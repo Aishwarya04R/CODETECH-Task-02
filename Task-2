@@ -1,0 +1,568 @@
+/[class-1 patient]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+/**
+ *
+ * @author aishu
+ */
+public class Patient {
+    private String patientId;
+    private String name;
+    private String dateOfBirth;
+    private String address;
+    private String phoneNumber;
+
+    public Patient(String patientId, String name, String dateOfBirth, String address, String phoneNumber) {
+        this.patientId = patientId;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient ID: " + patientId + ", Name: " + name + ", DOB: " + dateOfBirth;
+    }
+}
+
+
+/[class-2 Appointment]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+/**
+ *
+ * @author aishu
+ */
+import java.util.Date;
+
+public class Appointment {
+    private String appointmentId;
+    private String patientId;
+    private String doctorName;
+    private Date appointmentDate;
+    private String status;
+
+    public Appointment(String appointmentId, String patientId, String doctorName, Date appointmentDate, String status) {
+        this.appointmentId = appointmentId;
+        this.patientId = patientId;
+        this.doctorName = doctorName;
+        this.appointmentDate = appointmentDate;
+        this.status = status;
+    }
+
+    public String getAppointmentId() {
+        return appointmentId;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public Date getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment ID: " + appointmentId + ", Patient ID: " + patientId + ", Doctor: " + doctorName + ", Date: " + appointmentDate;
+    }
+}
+
+
+/[class-3 HealthRecord]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+
+/**
+ *
+ * @author aishu
+ */
+public class HealthRecord {
+    private String patientId;
+    private String medicalHistory;
+    private String currentMedication;
+    private String allergies;
+
+    public HealthRecord(String patientId, String medicalHistory, String currentMedication, String allergies) {
+        this.patientId = patientId;
+        this.medicalHistory = medicalHistory;
+        this.currentMedication = currentMedication;
+        this.allergies = allergies;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public String getMedicalHistory() {
+        return medicalHistory;
+    }
+
+    public String getCurrentMedication() {
+        return currentMedication;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient ID: " + patientId + ", Medical History: " + medicalHistory;
+    }
+}
+
+
+
+/[class-4 Billing]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+/**
+ *
+ * @author aishu
+ */
+public class Billing {
+    private String invoiceId;
+    private String patientId;
+    private double amount;
+    private String status;
+
+    public Billing(String invoiceId, String patientId, double amount, String status) {
+        this.invoiceId = invoiceId;
+        this.patientId = patientId;
+        this.amount = amount;
+        this.status = status;
+    }
+
+    public String getInvoiceId() {
+        return invoiceId;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice ID: " + invoiceId + ", Patient ID: " + patientId + ", Amount: $" + amount + ", Status: " + status;
+    }
+}
+
+
+/[class-5 Inventory]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+/**
+ *
+ * @author aishu
+ */
+import java.util.HashMap;
+import java.util.Map;
+
+public class Inventory {
+    private Map<String, Integer> supplies;
+
+    public Inventory() {
+        supplies = new HashMap<>();
+    }
+
+    public void addSupply(String item, int quantity) {
+        supplies.put(item, supplies.getOrDefault(item, 0) + quantity);
+    }
+
+    public boolean useSupply(String item, int quantity) {
+        if (supplies.containsKey(item) && supplies.get(item) >= quantity) {
+            supplies.put(item, supplies.get(item) - quantity);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory: " + supplies.toString();
+    }
+}
+
+
+
+/[class-6 Staff]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+
+/**
+ *
+ * @author aishu
+ */
+public class Staff {
+    private String staffId;
+    private String name;
+    private String role;
+    private String department;
+
+    public Staff(String staffId, String name, String role, String department) {
+        this.staffId = staffId;
+        this.name = name;
+        this.role = role;
+        this.department = department;
+    }
+
+    public String getStaffId() {
+        return staffId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff ID: " + staffId + ", Name: " + name + ", Role: " + role;
+    }
+}
+
+
+
+/[class-7 HospitalSystem]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+
+/**
+ *
+ * @author aishu
+ */
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class HospitalSystem {
+    private Map<String, Patient> patients;
+    private Map<String, Appointment> appointments;
+    private Map<String, HealthRecord> ehrRecords;
+    private Map<String, Billing> billings;
+    private Inventory inventory;
+    private Map<String, Staff> staff;
+
+    public HospitalSystem() {
+        patients = new HashMap<>();
+        appointments = new HashMap<>();
+        ehrRecords = new HashMap<>();
+        billings = new HashMap<>();
+        inventory = new Inventory();
+        staff = new HashMap<>();
+    }
+
+    public void registerPatient(String patientId, String name, String dob, String address, String phone) {
+        patients.put(patientId, new Patient(patientId, name, dob, address, phone));
+        System.out.println("Patient registered successfully.");
+    }
+
+    public void scheduleAppointment(String appointmentId, String patientId, String doctorName, Date date, String status) {
+        appointments.put(appointmentId, new Appointment(appointmentId, patientId, doctorName, date, status));
+        System.out.println("Appointment scheduled successfully.");
+    }
+
+    public void addEHR(String patientId, String medicalHistory, String medication, String allergies) {
+        ehrRecords.put(patientId, new HealthRecord(patientId, medicalHistory, medication, allergies));
+        System.out.println("EHR updated successfully.");
+    }
+
+    public void generateBill(String invoiceId, String patientId, double amount, String status) {
+        billings.put(invoiceId, new Billing(invoiceId, patientId, amount, status));
+        System.out.println("Bill generated successfully.");
+    }
+
+    public void addInventory(String item, int quantity) {
+        inventory.addSupply(item, quantity);
+        System.out.println("Inventory updated.");
+    }
+
+    public void useInventory(String item, int quantity) {
+        if (inventory.useSupply(item, quantity)) {
+            System.out.println("Inventory updated.");
+        } else {
+            System.out.println("Insufficient stock.");
+        }
+    }
+
+    public void addStaff(String staffId, String name, String role, String department) {
+        staff.put(staffId, new Staff(staffId, name, role, department));
+        System.out.println("Staff added successfully.");
+    }
+
+    public void printInventory() {
+        System.out.println(inventory);
+    }
+
+    public void printPatients() {
+        for (Patient patient : patients.values()) {
+            System.out.println(patient);
+        }
+    }
+
+    public void printAppointments() {
+        for (Appointment appointment : appointments.values()) {
+            System.out.println(appointment);
+        }
+    }
+
+    public void printEHR() {
+        for (HealthRecord ehr : ehrRecords.values()) {
+            System.out.println(ehr);
+        }
+    }
+
+    public void printBillings() {
+        for (Billing billing : billings.values()) {
+            System.out.println(billing);
+        }
+    }
+
+    public void printStaff() {
+        for (Staff staffMember : staff.values()) {
+            System.out.println(staffMember);
+        }
+    }
+}
+
+
+/[class-8 Main]
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.hospitalmanagementsystem;
+
+/**
+ *
+ * @author aishu
+ */
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        HospitalSystem hms = new HospitalSystem();
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        while (true) {
+            System.out.println("Hospital Management System");
+            System.out.println("1. Register Patient");
+            System.out.println("2. Schedule Appointment");
+            System.out.println("3. Add EHR");
+            System.out.println("4. Generate Bill");
+            System.out.println("5. Manage Inventory");
+            System.out.println("6. Add Staff");
+            System.out.println("7. Print Reports");
+            System.out.println("8. Exit");
+            System.out.print("Choose an option: ");
+
+            int option = scanner.nextInt();
+            scanner.nextLine();  
+            
+            switch (option) {
+                case 1:
+                    System.out.print("Enter patient ID: ");
+                    String patientId = scanner.nextLine();
+                    System.out.print("Enter patient name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter date of birth (YYYY-MM-DD): ");
+                    String dob = scanner.nextLine();
+                    System.out.print("Enter address: ");
+                    String address = scanner.nextLine();
+                    System.out.print("Enter phone number: ");
+                    String phone = scanner.nextLine();
+                    hms.registerPatient(patientId, name, dob, address, phone);
+                    break;
+
+                case 2:
+                    System.out.print("Enter appointment ID: ");
+                    String appointmentId = scanner.nextLine();
+                    System.out.print("Enter patient ID: ");
+                    String patId = scanner.nextLine();
+                    System.out.print("Enter doctor name: ");
+                    String doctorName = scanner.nextLine();
+                    System.out.print("Enter appointment date (YYYY-MM-DD): ");
+                    Date date = null;
+                    try {
+                        date = dateFormat.parse(scanner.nextLine());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.print("Enter status: ");
+                    String status = scanner.nextLine();
+                    hms.scheduleAppointment(appointmentId, patId, doctorName, date, status);
+                    break;
+
+                case 3:
+                    System.out.print("Enter patient ID: ");
+                    String ehrPatientId = scanner.nextLine();
+                    System.out.print("Enter medical history: ");
+                    String medicalHistory = scanner.nextLine();
+                    System.out.print("Enter current medication: ");
+                    String medication = scanner.nextLine();
+                    System.out.print("Enter allergies: ");
+                    String allergies = scanner.nextLine();
+                    hms.addEHR(ehrPatientId, medicalHistory, medication, allergies);
+                    break;
+
+                case 4:
+                    System.out.print("Enter invoice ID: ");
+                    String invoiceId = scanner.nextLine();
+                    System.out.print("Enter patient ID: ");
+                    String billPatientId = scanner.nextLine();
+                    System.out.print("Enter amount: ");
+                    double amount = scanner.nextDouble();
+                    scanner.nextLine();  // Consume newline
+                    System.out.print("Enter status: ");
+                    String billStatus = scanner.nextLine();
+                    hms.generateBill(invoiceId, billPatientId, amount, billStatus);
+                    break;
+
+                case 5:
+                    System.out.println("1. Add Supply");
+                    System.out.println("2. Use Supply");
+                    System.out.print("Choose an option: ");
+                    int inventoryOption = scanner.nextInt();
+                    scanner.nextLine();  // Consume newline
+                    if (inventoryOption == 1) {
+                        System.out.print("Enter item name: ");
+                        String item = scanner.nextLine();
+                        System.out.print("Enter quantity: ");
+                        int quantity = scanner.nextInt();
+                        scanner.nextLine();  // Consume newline
+                        hms.addInventory(item, quantity);
+                    } else if (inventoryOption == 2) {
+                        System.out.print("Enter item name: ");
+                        String item = scanner.nextLine();
+                        System.out.print("Enter quantity: ");
+                        int quantity = scanner.nextInt();
+                        scanner.nextLine();  // Consume newline
+                        hms.useInventory(item, quantity);
+                    }
+                    break;
+
+                case 6:
+                    System.out.print("Enter staff ID: ");
+                    String staffId = scanner.nextLine();
+                    System.out.print("Enter staff name: ");
+                    String staffName = scanner.nextLine();
+                    System.out.print("Enter role: ");
+                    String role = scanner.nextLine();
+                    System.out.print("Enter department: ");
+                    String department = scanner.nextLine();
+                    hms.addStaff(staffId, staffName, role, department);
+                    break;
+
+                case 7:
+                    System.out.println("1. Print Patients");
+                    System.out.println("2. Print Appointments");
+                    System.out.println("3. Print EHR");
+                    System.out.println("4. Print Billings");
+                    System.out.println("5. Print Inventory");
+                    System.out.println("6. Print Staff");
+                    System.out.print("Choose an option: ");
+                    int reportOption = scanner.nextInt();
+                    scanner.nextLine();  
+                    switch (reportOption) {
+                        case 1:
+                            hms.printPatients();
+                            break;
+                        case 2:
+                            hms.printAppointments();
+                            break;
+                        case 3:
+                            hms.printEHR();
+                            break;
+                        case 4:
+                            hms.printBillings();
+                            break;
+                        case 5:
+                            hms.printInventory();
+                            break;
+                        case 6:
+                            hms.printStaff();
+                            break;
+                    }
+                    break;
+
+                case 8:
+                    System.out.println("Exiting...");
+                    return;
+
+                default:
+                    System.out.println("Invalid option. Try again.");
+            }
+        }
+    }
+}
